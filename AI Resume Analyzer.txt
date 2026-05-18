@@ -1,0 +1,38 @@
+print("=== AI RESUME ANALYZER ===")
+
+name = input("Enter Candidate Name: ")
+resume = input("Enter Resume Text: ")
+job = input("Enter Job Description: ")
+
+resume_words = resume.lower().split()
+job_words = job.lower().split()
+
+matched_words = []
+
+for word in resume_words:
+    if word in job_words:
+        if word not in matched_words:
+            matched_words.append(word)
+
+
+total_keywords = len(set(job_words))
+
+if total_keywords == 0:
+    score = 0
+else:
+    score = (len(matched_words) / total_keywords) * 100
+
+print("\n--- RESULT ---")
+print("Name:", name)
+print("ATS Score:", round(score, 2), "%")
+print("Matched Skills:", matched_words)
+
+
+if score >= 70:
+    print("Status: Strong Match")
+elif score >= 40:
+    print("Status: Medium Match")
+else:
+    print("Status: Low Match")
+
+print("\nAnalysis Completed")
